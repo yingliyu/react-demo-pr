@@ -3,4 +3,4 @@
 
 echo '提交前触发！！'
 
-yarn run precommit
+yarn run prettier
