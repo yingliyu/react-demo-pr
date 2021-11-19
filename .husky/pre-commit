@@ -2,3 +2,5 @@
 . "$(dirname "$0")/_/husky.sh"
 
 echo '提交前触发！！'
+
+yarn run precommit
