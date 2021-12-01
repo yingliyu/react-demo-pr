@@ -1,3 +1,11 @@
+/*
+ * @Author: ylyu
+ * @Date: 2021-11-17 14:59:32
+ * @LastEditors: ylyu
+ * @LastEditTime: 2021-12-01 11:20:56
+ * @Description:
+ */
+
 // https://umijs.org/config/
 import { defineConfig } from 'umi';
 import { join } from 'path';
@@ -16,7 +24,7 @@ export default defineConfig({
   },
   layout: {
     // https://umijs.org/zh-CN/plugins/plugin-layout
-    locale: true,
+    locale: true, // 关闭国际化语言
     siderWidth: 208,
     ...defaultSettings,
   },
