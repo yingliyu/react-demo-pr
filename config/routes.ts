@@ -2,7 +2,7 @@
  * @Author: ylyu
  * @Date: 2021-11-17 14:59:32
  * @LastEditors: ylyu
- * @LastEditTime: 2021-12-01 15:08:27
+ * @LastEditTime: 2021-12-03 16:12:14
  * @Description:
  */
 export default [
@@ -32,53 +32,64 @@ export default [
     component: './Welcome',
   },
   {
-    path: '/formily-login',
-    name: 'formily-login',
-    icon: 'smile',
-    component: './FormilyLogin',
+    path: '/formily',
+    name: 'Formily',
+    icon: 'crown',
+    access: 'canAdmin',
+    routes: [
+      {
+        path: '/formily/demo',
+        name: 'Formily-demo',
+        component: './formily/FormilyDemo',
+      },
+      {
+        path: '/formily/login',
+        name: 'Formily-登录',
+        component: './formily/FormilyLogin',
+      },
+      {
+        path: '/formily/reg',
+        name: 'Formily-注册',
+        component: './formily/FormilyReg',
+      },
+      {
+        path: '/formily/1v1',
+        name: 'Formily-联动一对一',
+        component: './formily/FormilyV1',
+      },
+      {
+        path: '/formily/1v2',
+        name: 'Formily-联动一对多',
+        component: './formily/FormilyV2',
+      },
+      {
+        path: '/formily/dep',
+        name: 'Formily-依赖联动',
+        component: './formily/FormilyDep',
+      },
+      {
+        path: '/formily/chain',
+        name: 'Formily-链式联动',
+        component: './formily/FormilyChained',
+      },
+      {
+        path: '/formily/circle',
+        name: 'Formily-循环联动',
+        component: './formily/FormilyCircle',
+      },
+      {
+        path: '/formily/self',
+        name: 'Formily-自身联动',
+        component: './formily/FormilySelf',
+      },
+      {
+        path: '/formily/asyn',
+        name: 'Formily-异步联动',
+        component: './formily/FormilyAsyn',
+      },
+    ],
   },
-  {
-    path: '/formily-1v1',
-    name: 'formily联动1v1',
-    icon: 'smile',
-    component: './FormilyAdvanced',
-  },
-  {
-    path: '/formily-1v2',
-    name: 'formily联动1v2',
-    icon: 'smile',
-    component: './FormilyAdvanced2',
-  },
-  {
-    path: '/formily-dep',
-    name: 'formily依赖联动',
-    icon: 'smile',
-    component: './FormilyDep',
-  },
-  {
-    path: '/formily-chain',
-    name: 'formily链式联动',
-    icon: 'smile',
-    component: './FormilyChained',
-  },
-  {
-    path: '/formily-circle',
-    name: 'formily循环联动',
-    icon: 'smile',
-    component: './FormilyCircle',
-  },
-  {
-    path: '/formily-self',
-    name: 'formily自身联动',
-    icon: 'smile',
-    component: './FormilySelf',
-  },
-  {
-    path: '/formily-asyn',
-    name: 'formily异步联动',
-    icon: 'smile',
-    component: './FormilyAsyn',
-  },
+
   {
     path: '/admin',
     name: 'admin',

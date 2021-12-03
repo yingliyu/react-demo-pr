@@ -2,12 +2,12 @@
  * @Author: ylyu
  * @Date: 2021-11-30 16:23:38
  * @LastEditors: ylyu
- * @LastEditTime: 2021-12-01 14:47:13
- * @Description:高级联动之链式联动
+ * @LastEditTime: 2021-12-03 14:42:56
+ * @Description:高级联动之链式联动——被动
  */
 
 import { useMemo } from 'react';
-import { createForm, onFieldValueChange } from '@formily/core';
+import { createForm, onFieldReact } from '@formily/core';
 import { createSchemaField, FormConsumer, FormProvider } from '@formily/react';
 import { FormLayout, FormItem, Input, Select } from '@formily/antd';
 
@@ -44,15 +44,6 @@ const formSchema = {
           ],
           'x-decorator': 'FormItem',
           'x-component': 'Select',
-          // SchemaReactions 实现联动
-          // 'x-reactions': {
-          //   target: 'select1',
-          //   fulfill: {
-          //     state: {
-          //       visible: '{{!!$self.value}}',
-          //     },
-          //   },
-          // },
         },
         select1: {
           type: 'string',
@@ -66,10 +57,10 @@ const formSchema = {
           'x-component': 'Select',
           // SchemaReactions 实现联动
           // 'x-reactions': {
-          //   target: 'input',
+          //   dependencies: ['select'],
           //   fulfill: {
           //     state: {
-          //       visible: '{{!!$self.value}}',
+          //       visible: '{{!!$deps[0]}}',
           //     },
           //   },
           // },
@@ -79,6 +70,15 @@ const formSchema = {
           title: '受控者2',
           'x-decorator': 'FormItem',
           'x-component': 'Input',
+          // SchemaReactions 实现联动
+          // 'x-reactions': {
+          //   dependencies: ['select1'],
+          //   fulfill: {
+          //     state: {
+          //       visible: '{{!!$deps[0]}}',
+          //     },
+          //   },
+          // },
         },
       },
     },
@@ -90,17 +90,11 @@ export default () => {
     () =>
       createForm({
         effects() {
-          onFieldValueChange('select', (field) => {
-            form.setFieldState('select1', (state) => {
-              //对于初始联动，如果字段找不到，setFieldState会将更新推入更新队列，直到字段出现再执行操作
-              state.visible = !!field.value;
-            });
+          onFieldReact('select1', (field) => {
+            field.visible = !!field.query('select').value();
           });
-          onFieldValueChange('select1', (field) => {
-            form.setFieldState('input', (state) => {
-              //对于初始联动，如果字段找不到，setFieldState会将更新推入更新队列，直到字段出现再执行操作
-              state.visible = !!field.value;
-            });
+          onFieldReact('input', (field) => {
+            field.visible = !!field.query('select1').value();
           });
         },
       }),

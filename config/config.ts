@@ -2,7 +2,7 @@
  * @Author: ylyu
  * @Date: 2021-11-17 14:59:32
  * @LastEditors: ylyu
- * @LastEditTime: 2021-12-01 11:20:56
+ * @LastEditTime: 2021-12-03 10:49:34
  * @Description:
  */
 
@@ -78,4 +78,11 @@ export default defineConfig({
   mfsu: {},
   webpack5: {},
   exportStatic: {},
+  extraBabelPlugins: [
+    [
+      'babel-plugin-import',
+      { libraryName: '@formily/antd', libraryDirectory: 'esm', style: true },
+      '@formily/antd',
+    ],
+  ],
 });

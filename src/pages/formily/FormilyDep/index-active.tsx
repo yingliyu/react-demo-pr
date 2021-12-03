@@ -2,7 +2,7 @@
  * @Author: ylyu
  * @Date: 2021-11-30 16:23:38
  * @LastEditors: ylyu
- * @LastEditTime: 2021-12-01 14:34:24
+ * @LastEditTime: 2021-12-03 14:15:49
  * @Description:高级联动之依赖联动
  */
 
@@ -45,6 +45,16 @@ const formSchema = {
             extra: 'extra',
             // labelCol: 6,
             // wrapperCol: 10,
+            // SchemaReactions 实现联动
+            'x-reactions': {
+              dependencies: ['value2'],
+              target: 'result',
+              fulfill: {
+                state: {
+                  value: '{{$self.value*deps[0]}}',
+                },
+              },
+            },
           },
         },
         value2: {
@@ -58,6 +68,15 @@ const formSchema = {
             extra: '第二项',
             colon: false,
             addonAfter: '=',
+          },
+          'x-reactions': {
+            dependencies: ['value1'],
+            target: 'result',
+            fulfill: {
+              state: {
+                value: '{{$self.value*deps[0]}}',
+              },
+            },
           },
         },
         result: {
@@ -74,15 +93,6 @@ const formSchema = {
           'x-component-props': {
             bordered: false,
           },
-          // SchemaReactions 实现联动
-          // 'x-reactions': {
-          //   dependencies: ['value1', 'value2'],
-          //   fulfill: {
-          //     state: {
-          //       value: '{{$deps[0] * $deps[1]}}',
-          //     },
-          //   },
-          // },
         },
       },
     },
