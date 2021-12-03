@@ -3,7 +3,7 @@
  * @Author: ylyu
  * @Date: 2021-11-29 16:18:22
  * @LastEditors: ylyu
- * @LastEditTime: 2021-12-03 16:58:33
+ * @LastEditTime: 2021-12-03 17:34:51
  */
 
 import React, { useMemo } from 'react';
@@ -110,7 +110,7 @@ const phoneSchema = {
       title: '手机号',
       required: true,
       // 字段校验器 https://core.formilyjs.org/api/models/field#fieldvalidator
-      // 'x-validator': 'phone',
+      'x-validator': 'phone',
       // 'x-validator': [{ required: true }, 'phone'],
       'x-decorator': 'FormItem',
       'x-component': 'Input',
